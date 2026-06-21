@@ -8,6 +8,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useChat } from "@/store/chatStore";
 import { InputBar } from "@/components/InputBar";
+import { TypewriterText } from "@/components/TypewriterText";
 import { useTheme } from "@/hooks/useTheme";
 
 const CODE_THEME_LIGHT = {
@@ -52,12 +53,11 @@ const Message = memo(function Message({ msg, msgId, copiedId, onCopy, markdownCo
             {msg.content}
           </p>
         ) : msg.content ? (
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={markdownComponents}
-          >
-            {msg.content}
-          </ReactMarkdown>
+          <TypewriterText
+            text={msg.content}
+            speed={8}
+            markdownComponents={markdownComponents}
+          />
         ) : (
           <div className="flex items-center gap-1.5 py-1">
             <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500 [animation-delay:-0.3s]"></span>
