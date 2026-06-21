@@ -23,53 +23,52 @@ const CODE_THEME_LIGHT = {
 };
 
 const Message = memo(function Message({ msg, msgId, copiedId, onCopy, markdownComponents }) {
-    const isUser = msg.role === "user";
+  const isUser = msg.role === "user";
 
-    return (
-      <div className={`flex flex-col ${isUser ? "items-end" : "items-start"}`}>
-        <div
-          className={`group relative max-w-[95%] sm:max-w-[85%] px-4 py-3 rounded-2xl ${
-            isUser
-              ? "bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100"
-              : "bg-neutral-50/50 dark:bg-neutral-900/40 text-neutral-800 dark:text-neutral-200 w-full"
+  return (
+    <div className={`flex flex-col ${isUser ? "items-end" : "items-start"}`}>
+      <div
+        className={`group relative max-w-[95%] sm:max-w-[85%] px-4 py-3 rounded-2xl ${isUser
+          ? "bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100"
+          : "bg-neutral-50/50 dark:bg-neutral-900/40 text-neutral-800 dark:text-neutral-200 w-full"
           }`}
-        >
-          {!isUser && msg.content && (
-            <button
-              onClick={() => onCopy(msgId, msg.content)}
-              className="absolute -top-2 -right-2 rounded-lg border border-neutral-200 bg-white p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus-visible:ring-neutral-500 shadow-xs cursor-pointer"
-              aria-label="Copy response"
-            >
-              {copiedId === msgId ? (
-                <Check className="h-3.5 w-3.5 text-green-500 stroke-[2.5]" />
-              ) : (
-                <Copy className="h-3.5 w-3.5" />
-              )}
-            </button>
-          )}
+      >
+        {!isUser && msg.content && (
+          <button
+            onClick={() => onCopy(msgId, msg.content)}
+            className="absolute -top-2 -right-2 rounded-lg border border-neutral-200 bg-white p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus-visible:ring-neutral-500 shadow-xs cursor-pointer"
+            aria-label="Copy response"
+          >
+            {copiedId === msgId ? (
+              <Check className="h-3.5 w-3.5 text-green-500 stroke-[2.5]" />
+            ) : (
+              <Copy className="h-3.5 w-3.5" />
+            )}
+          </button>
+        )}
 
-          {isUser ? (
-            <p className="whitespace-pre-wrap text-sm leading-relaxed">
-              {msg.content}
-            </p>
-          ) : msg.content ? (
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={markdownComponents}
-            >
-              {msg.content}
-            </ReactMarkdown>
-          ) : (
-            <div className="flex items-center gap-1.5 py-1">
-              <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500 [animation-delay:-0.3s]"></span>
-              <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500 [animation-delay:-0.15s]"></span>
-              <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500"></span>
-            </div>
-          )}
-        </div>
+        {isUser ? (
+          <p className="whitespace-pre-wrap text-sm leading-relaxed">
+            {msg.content}
+          </p>
+        ) : msg.content ? (
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={markdownComponents}
+          >
+            {msg.content}
+          </ReactMarkdown>
+        ) : (
+          <div className="flex items-center gap-1.5 py-1">
+            <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500 [animation-delay:-0.3s]"></span>
+            <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500 [animation-delay:-0.15s]"></span>
+            <span className="h-2 w-2 animate-bounce rounded-full bg-neutral-400 dark:bg-neutral-500"></span>
+          </div>
+        )}
       </div>
-    );
-  },
+    </div>
+  );
+},
   (prev, next) =>
     prev.msg.content === next.msg.content &&
     prev.msg.role === next.msg.role &&
@@ -257,7 +256,7 @@ export function ChatPanel({ isSidebarOpen, onToggleSidebar }) {
               <PanelLeft className="h-5 w-5" />
             </button>
           )}
-          <span className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+          <span className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
             Nexus
           </span>
         </div>
