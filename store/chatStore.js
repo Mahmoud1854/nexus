@@ -39,9 +39,6 @@ export function ChatProvider({ children }) {
         if (Array.isArray(parsed)) {
           // eslint-disable-next-line react-hooks/set-state-in-effect
           setChats(parsed);
-          if (parsed.length > 0) {
-            setActiveChatId(parsed[0].id);
-          }
         }
       }
     } catch (e) {
