@@ -13,7 +13,7 @@ export async function POST(request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "openai/gpt-oss-20b",
+      model: "mixtral-8x7b-32768",
       messages,
       stream: true,
     }),

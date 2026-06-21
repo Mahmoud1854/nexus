@@ -257,6 +257,9 @@ export function ChatPanel({ isSidebarOpen, onToggleSidebar }) {
               <PanelLeft className="h-5 w-5" />
             </button>
           )}
+          <span className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+            Nexus
+          </span>
         </div>
       </header>
 
