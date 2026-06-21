@@ -70,6 +70,18 @@ export function ChatProvider({ children }) {
     stopGenerationRef.current = stopGeneration;
   }, [stopGeneration]);
 
+  const resetChat = useCallback(() => {
+    if (stopGenerationRef.current) stopGenerationRef.current();
+    setChats([]);
+    setActiveChatId(null);
+    setError(null);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      console.error("Failed to clear localStorage:", e);
+    }
+  }, []);
+
   const createNewChat = useCallback(() => {
     if (stopGenerationRef.current) stopGenerationRef.current();
     const newChat = {
@@ -276,6 +288,7 @@ export function ChatProvider({ children }) {
         isStreaming,
         error,
         isHydrated,
+        resetChat,
         createNewChat,
         selectChat,
         deleteChat,
